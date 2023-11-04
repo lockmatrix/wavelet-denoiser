@@ -6,3 +6,4 @@ soundfile
 sounddevice
 typing
 matplotlib
+tqdm

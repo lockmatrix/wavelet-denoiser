@@ -2,6 +2,7 @@
 
 import numpy
 import pywt
+import tqdm
 from windowBundle import WindowBundle
 from noiseProfiler import NoiseProfiler
 
@@ -79,8 +80,7 @@ class Denoiser:
         bandId = 0
         numOfBands = len(XleafNodes)
         counter = 0;
-        for node in XleafNodes:
-            print(str(round(counter/numOfBands*100)) + "%")
+        for node in tqdm.tqdm(XleafNodes, total=numOfBands):
             bandAk = Ak[bandId]
             bandId += 1
             XbandData = X[node].data
@@ -107,8 +107,7 @@ class Denoiser:
         # print(Ak)
         # print(XleafNodes)
         bandId = 0
-        for node in range(nBands):
-            print(str(round(bandId/nBands*100)) + "%")
+        for node in tqdm.tqdm(range(nBands), total=nBands):
             bandAk = Ak[bandId]
             XbandData = X[node]
             NbandData = N[node]
