@@ -168,7 +168,10 @@ class Denoiser:
         Hd = numpy.zeros(nSamples)
         # iterating through the 'w' (from the paper)
         for i in range(0, nSamples):
-            Hd[i] = pow((1 - self.c * Pn * ak / Px[i]), self.b)
+            if Px[i] == 0:
+                Hd[i] = 1
+            else:
+                Hd[i] = pow((1 - self.c * Pn * ak / Px[i]), self.b)
         return Hd
 
     def linearAk(self, nBands, slope):
